@@ -1,0 +1,97 @@
+{
+  "$schema": "http://interagent.github.io/interagent-hyper-schema",
+  "type": [
+    "object"
+  ],
+  "definitions": {
+    "identity": {
+      "$ref": "#/definitions/id"
+    },
+    "id": {
+      "description": "Unique identifier of a resource.",
+      "example": "1dc3567e-acd4-4819-afd5-21d0ef677dcd",
+      "readOnly": true,
+      "format": "uuid",
+      "type": [
+        "string"
+      ]
+    },
+    "person": {
+      "title": "Person",
+      "properties": {
+        "id": {
+          "$ref": "#/definitions/id"
+        },
+        "first_name": {
+          "description": "The person's first name.",
+          "example": "Jean-Luc",
+          "type": [
+            "string"
+          ]
+        },
+        "last_name": {
+          "description": "The person's last name.",
+          "example": "Picard",
+          "type": [
+            "string"
+          ]
+        },
+        "email_address": {
+          "description": "The person's email address.",
+          "example": "locutus@borg.hive",
+          "format": "email",
+          "type": [
+            "string"
+          ]
+        }
+      },
+      "definitions": {
+        "person": {
+          "description": "A single person",
+          "properties": {
+            "id": {
+              "$ref": "#/definitions/id"
+            },
+            "first_name": {
+              "$ref": "#/definitions/first_name"
+            },
+            "last_name": {
+              "$ref": "#/definitions/last_name"
+            },
+            "email_address": {
+              "$ref": "#/definitions/email_address"
+            }
+          },
+          "type": [
+            "object"
+          ]
+        }
+      },
+      "links": [
+        {
+          "title": "Person details",
+          "description": "Get the details of a person",
+          "method": "GET",
+          "href": "/person/{#/definitions/identity}",
+          "targetSchema": {
+            "$ref": "#/definitions/person"
+          }
+        }
+      ]
+    }
+  },
+  "properties": {
+    "person": {
+      "$ref": "#/definitions/person"
+    }
+  },
+  "id": "person-api",
+  "description": "Person Example API",
+  "title": "Person Example API",
+  "links": [
+    {
+      "href": "https://api.example.com",
+      "rel": "self"
+    }
+  ]
+}
